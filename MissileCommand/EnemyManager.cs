@@ -67,8 +67,6 @@ namespace MissileCommand
                             }
                         }
                     }
-                
-                    
                     _timePerLevel++;
                 }
                 else
@@ -77,7 +75,7 @@ namespace MissileCommand
                     _totalMissileForalevel += _multiplier;
                     _multiplier++;
 
-                    _totalMissileForalevel = 10;
+                    _totalMissileForalevel = 10 + _multiplier;
                     _timePerLevel = 0;
                     //add game multiplier and check if still alive
                     Console.WriteLine("Multiply Level");

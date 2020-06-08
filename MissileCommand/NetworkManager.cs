@@ -156,7 +156,7 @@ namespace MissileCommand
 
         private void updateTurrets(NetIncomingMessage im)
         {
-            if (_game.state == GameState.Ready)
+            if (_game.state == GameState.MultiplayerRunningScreen)
             {
                 if (_role == NetRole.Client)
                 {
@@ -204,7 +204,7 @@ namespace MissileCommand
         }
         internal void sendTurretToKill(int v)
         {
-            if (_game.state == GameState.Ready)
+            if (_game.state == GameState.MultiplayerRunningScreen)
             {
                 if (_role == NetRole.Server)
                 {
@@ -220,7 +220,7 @@ namespace MissileCommand
 
         private void receiveSoundUpdate(NetIncomingMessage im)
         {
-            if (_game.state == GameState.Ready)
+            if (_game.state == GameState.MultiplayerRunningScreen)
             {
                 if (_role == NetRole.Client)
                 {
@@ -239,15 +239,15 @@ namespace MissileCommand
             }
 
         }
-        internal void sendsound(int v)
+        internal void sendsound(int sound)
         {
-            if (_game.state == GameState.Ready)
+            if (_game.state == GameState.MultiplayerRunningScreen)
             {
                 if (_role == NetRole.Server)
                 {
                     NetOutgoingMessage om = _peer.CreateMessage();
                     om.Write((int)MessageType.PlaySound);
-                    om.Write(v);
+                    om.Write(sound);
                     _peer.SendMessage(om, _peer.Connections[0], NetDeliveryMethod.Unreliable);
                 }
             }
@@ -255,7 +255,7 @@ namespace MissileCommand
 
         private void receiveBuildingUpdate(NetIncomingMessage im)
         {
-            if (_game.state == GameState.Ready)
+            if (_game.state == GameState.MultiplayerRunningScreen)
             {
                 int entityCount = im.ReadInt32();
                 if (_role == NetRole.Client)
@@ -279,7 +279,7 @@ namespace MissileCommand
 
         private void sendbuildingsList()
         {
-            if (_game.state == GameState.Ready)
+            if (_game.state == GameState.MultiplayerRunningScreen)
             {
                 if (_role == NetRole.Server)
                 {
@@ -303,7 +303,7 @@ namespace MissileCommand
 
         private void receiveExplosionUpdate(NetIncomingMessage im)
         {
-            if (_game.state == GameState.Ready)
+            if (_game.state == GameState.MultiplayerRunningScreen)
             {
                 int entityCount = im.ReadInt32();
                 if (_role == NetRole.Client)
@@ -331,7 +331,7 @@ namespace MissileCommand
         }
         private void sendExplosionList()
         {
-            if (_game.state == GameState.Ready)
+            if (_game.state == GameState.MultiplayerRunningScreen)
             {
                 if (_role == NetRole.Server)
                 {
@@ -376,7 +376,7 @@ namespace MissileCommand
 
         private void sendMissileList()
         {
-            if (_game.state == GameState.Ready)
+            if (_game.state == GameState.MultiplayerRunningScreen)
             {
                 if (_role == NetRole.Server)
                 {
@@ -404,9 +404,10 @@ namespace MissileCommand
             }
 
         }
+
         private void receiveMissiles(NetIncomingMessage im)
         {
-            if (_game.state == GameState.Ready)
+            if (_game.state == GameState.MultiplayerRunningScreen)
             {
                 int entityCount = im.ReadInt32();
                 if (_role == NetRole.Client)
@@ -438,7 +439,7 @@ namespace MissileCommand
         }
         public void sendMissileUpdate(Missile clientMissile)
         {
-            if (_game.state == GameState.Ready)
+            if (_game.state == GameState.MultiplayerRunningScreen)
             {
 
                 NetOutgoingMessage om = _peer.CreateMessage();
@@ -466,7 +467,7 @@ namespace MissileCommand
 
         public void sendMouseUpdate()
         {
-            if (_game.state == GameState.Ready)
+            if (_game.state == GameState.MultiplayerRunningScreen)
             {
                 NetOutgoingMessage om = _peer.CreateMessage();
                 om.Write((int)MessageType.UpdateMouse);
@@ -488,7 +489,7 @@ namespace MissileCommand
         }
         public void receiveMouseUpdate(NetIncomingMessage im)
         {
-            if (_game.state == GameState.Ready)
+            if (_game.state == GameState.MultiplayerRunningScreen)
             {
                 int x, y;
                 x = im.ReadInt32();
